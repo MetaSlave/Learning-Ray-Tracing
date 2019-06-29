@@ -1,0 +1,28 @@
+Dot Product:
+Ax . Bx + Ay . By
+
+Point on Sphere = <P-C,P-C> = radius^2
+Point on Ray    = P = O + tD
+
+Where P is a point,
+Where C is the center of the sphere,
+Where O is the point of camera,
+Where V is the point of viewport,
+Thus D is the direction of the ray (Vector)
+t is a variable
+
+k1 = <D,D>
+k2 = 2<OC,D>
+k3 = <OC,OC> - r^2
+
+Equation:
+k1(t^2) + k2(t) + k3
+
+Will Yield:
+(t1,t2) or (t,t) or no solutions
+
+t = 0, On Camera
+t = 1, On Viewport
+t < 0, Behind Camera
+0 <= t <= 1 Between Camera and Viewport
+t > 1 Scene
