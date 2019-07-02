@@ -2,6 +2,12 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
 
+class Sphere:
+	def __init__(self, center, radius, color):
+		self.center = center
+		self.radius = radius
+		self.color = color
+
 # Multiply Color to Manipulate Brightness
 def Change_Brightness(pixel,intensity):
 	for color in pixel:
@@ -21,14 +27,26 @@ def Change_Color(first_color,second_color):
 	return new_color
 
 # Canvas Pixel to Viewport
-def Canvas_to_Viewport(canvas_array,width_scale,height_scale):
-	new_canvas_array = []
-	for row in canvas_array:
-		for pixel in row:
+def Canvas_to_Viewport(x,y,width_scale,height_scale):
+	x = x * width_scale
+	y = y * height_scale
+	# d is basically the z and distance to the viewport from canvas in z space
+	d = 1
+	return x,y,d
 
 # Tracing Ray (Computes intersection of ray with every sphere and return color of sphere at nearest intersection.)
+# Ax * Bx + Ay * By + Az * Bz
+def SolveIntersect(x,y,d,o,sphere):
+	c = sphere.center
+	r = sphere.radius
+	oc = O - C
+	k1 = 
 
-
+# Create Spheres in Main
+def Main():
+	# Need to Dot Product o
+	o = [0,0,0]
+	s1 = Sphere([0,-1,3],1,[255,0,0])
 # Solve Quadratic Equation
 # Empty 2D Canvas Generator
 canvas_width = 100
