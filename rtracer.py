@@ -39,9 +39,19 @@ def Canvas_to_Viewport(x,y,width_scale,height_scale):
 def SolveIntersect(x,y,d,o,sphere):
 	c = sphere.center
 	r = sphere.radius
-	oc = O - C
-	k1 = 
-
+	#oc = o - C
+	for dimension in o:
+		dimension = dimension + C[o.index(dimension)]
+	k1 = (x*x) + (y*y)
+	k2 = 2 * ((oc[0]*x) + (oc[1]*y))
+	k3 = ((oc[0]*oc[0]) + (oc[1]*oc[1])) - (r*r)
+	discriminant = k2*k2 - 4*k1*k3
+	if discriminant < 0:
+		return false,false
+	t1 = ((-k2) + sqrt(discriminant)) / (2*k1)
+	t2 = ((-k2) - sqrt(discriminant)) / (2*k1)
+	return t1,t2
+ 
 # Create Spheres in Main
 def Main():
 	# Need to Dot Product o
