@@ -36,6 +36,7 @@ def Canvas_to_Viewport(x,y,width_scale,height_scale):
 
 # Tracing Ray (Computes intersection of ray with every sphere and return color of sphere at nearest intersection.)
 # Ax * Bx + Ay * By + Az * Bz
+# Solve Quadratic Eqn
 def SolveIntersect(x,y,d,o,sphere):
 	c = sphere.center
 	r = sphere.radius
@@ -51,13 +52,26 @@ def SolveIntersect(x,y,d,o,sphere):
 	t1 = ((-k2) + sqrt(discriminant)) / (2*k1)
 	t2 = ((-k2) - sqrt(discriminant)) / (2*k1)
 	return t1,t2
- 
+
 # Create Spheres in Main
 def Main():
 	# Need to Dot Product o
 	o = [0,0,0]
+	# List of Spheres
+	list_of_spheres = []
 	s1 = Sphere([0,-1,3],1,[255,0,0])
-# Solve Quadratic Equation
+	list_of_spheres.append(s1)
+	for sphere in list_of_spheres:
+		t1,t2 = SolveIntersect(x,y,d,o,sphere)
+
+canvas_width = 100
+canvas_height = 100
+canvas_empty_pixel = [0,0,0]
+canvas_pixel_list = []
+for x in range(0,len(canvas_width)):
+	for y in range(0,len(canvas_height)):
+		canvas_pixel_list.append(canvas_empty_pixel)
+'''
 # Empty 2D Canvas Generator
 canvas_width = 100
 canvas_height = 100
@@ -72,3 +86,4 @@ view_width = 200
 view_height = 200
 view_dist_from_camera = 100
 
+'''
