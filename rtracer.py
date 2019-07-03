@@ -2,6 +2,13 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
 
+class Pixel:
+	def __init__(self, x, y, z, rgb):
+		self.x = x
+		self.y = y
+		self.z = z
+		self.rgb = rgb
+
 class Sphere:
 	def __init__(self, center, radius, color):
 		self.center = center
@@ -55,6 +62,15 @@ def SolveIntersect(x,y,d,o,sphere):
 
 # Create Spheres in Main
 def Main():
+	# Initialize Pixels in Canvas
+	canvas_width = 100
+	canvas_height = 100
+	canvas_empty_pixel = [0,0,0]
+	canvas_pixel_list = []
+	for x in range(0,len(canvas_width)):
+		for y in range(0,len(canvas_height)):
+			canvas_pixel_list.append(Pixel(x,y,d,canvas_empty_pixel))
+
 	# Need to Dot Product o
 	o = [0,0,0]
 	# List of Spheres
@@ -64,13 +80,6 @@ def Main():
 	for sphere in list_of_spheres:
 		t1,t2 = SolveIntersect(x,y,d,o,sphere)
 
-canvas_width = 100
-canvas_height = 100
-canvas_empty_pixel = [0,0,0]
-canvas_pixel_list = []
-for x in range(0,len(canvas_width)):
-	for y in range(0,len(canvas_height)):
-		canvas_pixel_list.append(canvas_empty_pixel)
 '''
 # Empty 2D Canvas Generator
 canvas_width = 100
