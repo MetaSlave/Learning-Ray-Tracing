@@ -71,12 +71,13 @@ def SolveIntersect(x,y,d,o,sphere):
 	o = list(map(operator.sub,c,o))
 	#Change to 3D Calculation
 	oc = o
-	k1 = (x*x) + (y*y)
-	k2 = 2 * ((oc[0]*x) + (oc[1]*y))
-	k3 = ((oc[0]*oc[0]) + (oc[1]*oc[1])) - (r*r)
+	k1 = (x*x) + (y*y) + (d*d)
+	k2 = 2 * ((oc[0]*x) + (oc[1]*y) + (oc[2]*d))
+	k3 = ((oc[0]*oc[0]) + (oc[1]*oc[1]) + (oc[2]*oc[2])) - (r*r)
 	discriminant = (k2*k2) - (4*k1*k3)
+	print(k1,k2,k3)
 	if discriminant < 0:
-		return false,false
+		return False,False
 	if k1 == 0:
 		t1 = 0
 		t2 = 0
@@ -103,8 +104,8 @@ def Main():
 	# Initialize Pixels in Canvas
 	canvas_width = 100
 	canvas_height = 100
-	width_scale = 1
-	height_scale = 1
+	width_scale = 0.01
+	height_scale = 0.01
 	canvas_empty_pixel = [0,0,0]
 	canvas_pixel_list = []
 	for x in range(0,canvas_width):
