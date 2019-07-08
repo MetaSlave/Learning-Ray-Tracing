@@ -49,17 +49,19 @@ def TraceRay(o,x,y,d,t_min,t_max,list_of_spheres,BACKGROUND_COLOR):
 	closest_sphere = None
 	for sphere in list_of_spheres:
 		t1,t2 = SolveIntersect(x,y,d,o,sphere)
+		t1 = -t1
+		t2 = -t2
 		if (t_min < t1 < t_max) and (t1 < closest_t):
 			closest_t = t1
 			closest_sphere = sphere
 		if (t_min < t2 < t_max) and (t2 < closest_t):
 			closest_t = t2
 			closest_sphere = sphere
-	print(t1,t2)
+	#print("T1 and T2 is:",T1,T2)
 	if closest_sphere is None:
-		print("Pixel " + str(x) + "," + str(y) + " is background.")
+		#print("Pixel " + str(x) + "," + str(y) + " is background.")
 		return BACKGROUND_COLOR
-	print("Pixel" + str(x) + "," + str(y) + " is sphere.")
+	#print("Pixel" + str(x) + "," + str(y) + " is sphere.")
 	return closest_sphere.color
 
 # Ax * Bx + Ay * By + Az * Bz
@@ -75,9 +77,9 @@ def SolveIntersect(x,y,d,o,sphere):
 	k2 = 2 * ((oc[0]*x) + (oc[1]*y) + (oc[2]*d))
 	k3 = ((oc[0]*oc[0]) + (oc[1]*oc[1]) + (oc[2]*oc[2])) - (r*r)
 	discriminant = (k2*k2) - (4*k1*k3)
-	print(k1,k2,k3)
+	#print("Discriminant is:",discriminant)
 	if discriminant < 0:
-		return False,False
+		return np.inf,np.inf
 	if k1 == 0:
 		t1 = 0
 		t2 = 0
@@ -93,23 +95,24 @@ def Main():
 	o = [0,0,0]
 	BACKGROUND_COLOR = [0,0,0]
 	t_min = 1
-	t_max = float('inf')
+	t_max = np.inf
 	list_of_colors = []
 
 	# List of Spheres
 	list_of_spheres = []
-	s1 = Sphere([0,-1,3],1,[255,0,0])
+	s1 = Sphere([0,-1,3],7,[255,0,0])
+	s2 = Sphere([4,-2,2],5,[0,255,0])
 	list_of_spheres.append(s1)
-
+	list_of_spheres.append(s2)
 	# Initialize Pixels in Canvas
-	canvas_width = 100
-	canvas_height = 100
-	width_scale = 0.01
-	height_scale = 0.01
+	canvas_width = 1000
+	canvas_height = 1000
+	width_scale = 0.1
+	height_scale = 0.1
 	canvas_empty_pixel = [0,0,0]
 	canvas_pixel_list = []
-	for x in range(0,canvas_width):
-		for y in range(0,canvas_height):
+	for x in range(int(-canvas_width/2),int(canvas_width/2)):
+		for y in range(int(-canvas_height/2),int(canvas_height/2)):
 			canvas_pixel_list.append(Pixel(x,y,False,canvas_empty_pixel))
 
 	# Trace Pixels in Canvas
