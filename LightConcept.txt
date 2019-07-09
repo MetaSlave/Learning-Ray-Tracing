@@ -1,0 +1,64 @@
+> Declare all light is white
+By doing this we only have one light intensity value if not, we need 3 intensity, RGB channels.
+> Ignore atmosphere
+Lights dont become less bright no matter how far away.
+
+Point Lights
+> Emits light from a position
+> Emitted equally in every direction (Omnidirectional Lights)
+> Fully characterized by its position and intensity
+> Approximately a light bulb
+e.g. L> is direction from a point in scene P to light, Q.
+Light Vector = Q - P
+Since Q is fixed, and P is anypoint in the scene, 
+L> is different for all points in scene.
+
+Directional Lights
+> Has intensity but no position, it has a direction
+> Basically a point light that is extremely far away from scene
+> Basically a Sun
+e.g. L> is different for every point in scene just like Point Light
+(Center of Light Source) - (Center of Earth) = L>
+
+Ambient Lights
+> When light hits an object, part of it is absorbed and the rest is scattered back into the scene
+> Light can also come from objects not just light sources
+> Light loses brightness after bouncing once 
+> All objects must be treated as light source
+> Characterized by intensity only
+> Unconditonally contributes light to every point in the scene
+
+Scene Science
+> A scene will have 1 ambient light since it only has intensity value and any number of them can be
+combined into one light
+> A scene will also have a number of point and directional lights
+> To calculate illumination at a point, we calculate amount of light contributed by each light source
+and add them together to get a single number representing total amount of light it receives
+> The amount of light it receives will be multipled by the color of the surface at that point to get
+its appropriate lit color
+> Objects are classified into 2 broad classes, MATTE and SHINY
+> Most objects are classified as MATTE
+
+Matte Objects (Diffuse Reflection)
+> When a ray of light hits a matte object, since the surface of this kind of objects is irregular,
+it reflects back light into the scene equally in every direction
+> This is known as Diffuse Reflection
+e.g. The light reflected from a wall is the same no matter where you're looking at it (Color does not change)
+> However the amount of light reflected does depend on the angle between the ray of light and the surface
+> This is because the energy carried by the ray has to spread over a smaller or bigger area depending on the
+angle, resulting in energy reflected per unit area of the object being higher or lower
+> We characterize the orientation of a surface by its normal vector, N>
+> This means N> is a vector perpendicular to the surface at some point
+> N> is also a unit vector which means it has a length of 1
+
+Modeling Diffuse Reflection
+> If a ray of light with direction L> and intensity I hits a surface with normal N>,
+What fraction of I is reflected back to the scene as a function of N>,L> and I
+> Taking the intensity of the light as the width of the ray, its energy spreads over a surface of size A
+> If N> and L> have the same direction, the ray is perpendicular to the surface
+> This means that the reflected energy is similar to the incident energy per unit area, I = A and I/A = 1
+> As the angle between N> and L> approaches 90 degrees, A approaches infinity meaning energy per unit area 
+approaches 0 (Lim A->inf I/A = 0)
+> Since ray of light has no width, the assumption that all reflection happens at an infinitely small flat plane
+
+
