@@ -60,5 +60,19 @@ What fraction of I is reflected back to the scene as a function of N>,L> and I
 > As the angle between N> and L> approaches 90 degrees, A approaches infinity meaning energy per unit area 
 approaches 0 (Lim A->inf I/A = 0)
 > Since ray of light has no width, the assumption that all reflection happens at an infinitely small flat plane
+> Width of light ray = I, Area light spreads out over = A, N = Surface Normal, L = Direction of Light
+> I/A = dot(N,L)/N*L where N and L cannot be negative in the denominator
+> If dot(N,L) / N*L = negative, it means light is reaching the back of the surface and does not contribute to illumination
+thus we treat it as 0
 
+Diffuse Reflection Full Equation
+> Ip = Intensity of light at a point, Ia = Ambient light intensity, N = Normal, n = Number of point or directional lights
+, In = Intensity of the n lights
+> Ip = Ia + Sum of n(In) * dot(N,L) / N*L where L, the light vector is either directional light and known or point light
+and computed
+
+Identifying Sphere Normals
+> Direction of normal vector of any point on the sphere can be calculated by the center of the sphere minus the point 
+> Direction of Normal Vector = P - C
+> Normal = P - C / P - C where denominator cannot be negative, modulied
 
