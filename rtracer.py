@@ -17,6 +17,12 @@ class Sphere:
 		self.radius = radius
 		self.color = color
 
+class Light:
+	def __init__(self, type, intensity, position):
+		self.type = type
+		self.intensity = intensity
+		self.position = position
+
 # Multiply Color to Manipulate Brightness
 def Change_Brightness(pixel,intensity):
 	for color in pixel:
@@ -88,6 +94,8 @@ def SolveIntersect(x,y,d,o,sphere):
 		t2 = ((-k2) - math.sqrt(discriminant)) / (2*k1)
 	return t1,t2
 
+def ComputeLighting():
+	
 # Create Spheres in Main
 def Main():
 
@@ -104,6 +112,14 @@ def Main():
 	s2 = Sphere([4,-2,2],5,[0,255,0])
 	list_of_spheres.append(s1)
 	list_of_spheres.append(s2)
+
+	# Initialize Lights in Scene (Type Intensity Position)
+	# Intensity adds up to 1.0 to prevent over-exposed spots as the lighting equation does not allow
+	# Greater light intensity than 1.0
+	l1 = Light('ambient',0.2)
+	l2 = Light('point',0.6,[2,1,0])
+	l3 = Light('directional',0.2,[1,4,4])
+
 	# Initialize Pixels in Canvas
 	canvas_width = 1000
 	canvas_height = 1000
